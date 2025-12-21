@@ -7,8 +7,8 @@ export default function App() {
     const [priority, setPriority] = useState("Low");
     const [category, setCategory] = useState("Personal");
     const [date, setDate] = useState("");
-    const [categoryfilter, setCategoryfilter] = useState("");
-    const [priorityfilter, setPriorityfilter] = useState("");
+    const [categoryfilter, setCategoryfilter] = useState("All");
+    const [priorityfilter, setPriorityfilter] = useState("All");
     const [searchterm, setSearchterm] = useState("");
     const [statusFilter, setStatusfilter] = useState("All");
 
@@ -28,8 +28,13 @@ export default function App() {
 
             setList([...list, data]);
             setTask("");
+            setDate("");
         
     };
+
+    const totalTasks = list.length;
+    const activeTasks = list.filter(t => !t.completed).length;
+    const completedTasks = list.filter(t => t.completed).length;
 
     const isDone = "text-sm text-gray-200 md:text-xl line-through opacity-50 transition duration-300";
     const notDone = "text-sm text-gray-100 md:text-xl transition duration-300";
@@ -38,13 +43,14 @@ export default function App() {
     const inactive = "bg-gray-700 text-gray-100 ";
 
     const filteredList = list.filter(entry => {
-            const term = entry.content.trim().includes(searchterm.trim());
-            const taskStatus = statusFilter === "All" || statusFilter === entry.completed
+           const term = searchterm === "" || entry.content.toLowerCase().includes(searchterm.toLowerCase());
+            const taskStatus = statusFilter === "All" || (statusFilter === "true" && entry.completed) || (statusFilter === "false" && !entry.completed);
             const cat = categoryfilter === "All" || categoryfilter === entry.type;
             const prio = priorityfilter === "All" || priorityfilter === entry.order;
 
             return term && taskStatus && cat && prio;
     });
+    
 
 return (
     <div className="min-h-screen w-full p-4 bg-gradient-to-b from-gray-900 via-gray-600 to-gray-900">
@@ -193,7 +199,21 @@ return (
         <div className="w-full p-4 text-center mb-4 
         md:mx-auto md:max-w-3xl md:p-8
         text-white rounded-lg font-sans bg-gradient-to-b from-gray-900 to-gray-800">
-                <h2 className="text-center font-sans font-semibold text-xl text-gray-100 mb-4 md:mb-8 md:text-2xl">Tasks</h2>
+                
+                <div className="flex justify-around text-center mb-4">
+                    <div>
+                        <p className="text-md md:text-2xl font-bold text-purple-400">{totalTasks}</p>
+                        <p className="text-xs text-gray-400">Total</p>
+                    </div>
+                    <div>
+                        <p className="text-md md:text-2xl font-bold text-blue-400">{activeTasks}</p>
+                        <p className="text-xs text-gray-400">Active</p>
+                    </div>
+                    <div>
+                        <p className="text-md md:text-2xl font-bold text-green-400">{completedTasks}</p>
+                        <p className="text-xs text-gray-400">Completed</p>
+                    </div>
+                </div>
             {   list.length === 0 ? (
                 <p className="text-gray-500 m-8">No tasks yet</p>
             ):(
