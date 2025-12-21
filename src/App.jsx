@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
 
 export default function App() {
     const [list, setList] = useState([]);
@@ -29,11 +30,22 @@ export default function App() {
         
     };
 
-    const isDone = "text-sm text-gray-400 line-through opacity-50";
-    const notDone = "text-sm text-gray-400 ";
+    const isDone = "text-sm text-gray-200 line-through opacity-50 transition duration-300";
+    const notDone = "text-sm text-gray-100 transition duration-300";
+    const btn = "text-md text-center w-fit px-4 py-1 rounded-full transition-all duration-300 focus:scale-105 ";
+    const active = "bg-gray-500 ";
+    const inactive = "bg-gray-600 text-gray-100 ";
+
+    const filteredList = list.filter(entry => {
+            const cat = categoryfilter === "All" || categoryfilter === entry.type;
+            const prio = priorityfilter === "All" || priorityfilter === entry.order;
+
+            return cat && prio;
+    });
 
 return (
     <div className="min-h-screen w-full p-4 bg-gradient-to-b from-gray-900 via-gray-600 to-gray-900">
+    
         <header className="">
             <h1 className="text-3xl text-gray-400 font-sans font-bold text-center my-6 ">Task Manager</h1>
         </header>
@@ -59,6 +71,7 @@ return (
                     value={category}
                     >
                         <option value="Personal">Personal</option>
+                        <option value="School">School</option>
                         <option value="Work">Work</option>
                         <option value="Shopping">Shopping</option>
                         <option value="Others">Others</option>
@@ -99,6 +112,43 @@ return (
                         Add Task
             </button>
         </div>
+        
+        <div className="space-x-1 space-y-1 flex justify-center items-center flex-wrap mb-4">
+            <button  
+            onClick={()=>(setCategoryfilter("All"))}
+            className={`${btn}${categoryfilter === "All"? active : inactive}`}>All</button>
+            <button  
+            onClick={()=>(setCategoryfilter("Personal"))}
+            className={`${btn}${categoryfilter === "Personal"? active : inactive}`}>Personal</button>
+            <button  
+            onClick={()=>(setCategoryfilter("School"))}
+            className={`${btn}${categoryfilter === "School"? active : inactive}`}>School</button>
+            <button  
+            onClick={()=>(setCategoryfilter("Work"))}
+            className={`${btn}${categoryfilter === "Work"? active : inactive}`}>Work</button>
+            <button  
+            onClick={()=>(setCategoryfilter("Shopping"))}
+            className={`${btn}${categoryfilter === "Shopping"? active : inactive}`}>Shopping</button>
+            <button  
+            onClick={()=>(setCategoryfilter("Others"))}
+            className={`${btn}${categoryfilter === "Others"? active : inactive}`}>Others</button>
+        </div>
+
+        <div className="mx-auto space-x-1 space-y-1 flex justify-center items-center flex-wrap mb-4">
+            <button
+            onClick={()=>(setPriorityfilter("All"))}
+            className={`${btn}${priorityfilter === "All"? active : inactive}`}>All</button>
+            <button
+            onClick={()=>(setPriorityfilter("High"))}
+            className={`${btn}${priorityfilter === "High"? active : inactive}`}>High</button>
+            <button
+            onClick={()=>(setPriorityfilter("Medium"))}
+            className={`${btn}${priorityfilter === "Medium"? active : inactive}`}>Medium</button>
+            <button
+            onClick={()=>(setPriorityfilter("Low"))}
+            className={`${btn}${priorityfilter === "Low"? active : inactive}`}>Low</button>
+        
+        </div>
 
         <div className="w-full p-4 text-center mb-4 md:mx-auto md:max-w-4xl md:p-8 md:text-xl text-white rounded-lg font-sans bg-gradient-to-br from-gray-900 to-gray-700">
                 <h2 className="text-center font-sans font-semibold text-xl text-gray-100">Tasks</h2>
@@ -107,26 +157,33 @@ return (
             ):(
                 <ul className="space-y-2"> 
                          {
-                            list.map(entry =>(
+                            filteredList.map(entry =>(
                             <li key={entry.id}
-                                className="flex flex-col gap-2 my-2 p-4 rounded-md space-y-1 bg-gradient-to-br from-black to-gray-800"
+                                className="flex flex-col gap-2 my-2 p-4 rounded-md space-y-1 bg-gradient-to-br from-black to-gray-800 transition-all duration-500"
                             >
                                <div className="flex justify-between items-center">
-                                    <p className="text-md flex-wrap">{entry.content}</p>
-                                    <button className="bg-slate-600 text-red-600 text-lg px-2 rounded-md focus:transform focus:scale-105 transition-all duration-300"
-                                            onClick={()=>(setList(list.filter(item => item.id !== entry.id)))}
-                                    >X</button>
-                               </div>
-                               <div className="flex justify-between items-baseline gap-2">
-                                    <p className={entry.completed?isDone:notDone}
+                                    <p
                                         onClick={() => {
                                                 setList(list.map(item => 
                                                         item.id === entry.id 
                                                         ? {...item, completed: !item.completed} 
                                                         : item
                                                         ))
-                                            }}      
-                                    >{entry.order} | {entry.type}</p>
+                                            }}   
+                                     className={entry.completed?isDone:notDone}
+                                           
+                                    >{entry.content}</p>
+                                    <button className=" text-red-500 text-lg px-2 rounded-md focus:transform focus:scale-105 transition-all duration-300"
+                                            onClick={()=>(setList(list.filter(item => item.id !== entry.id)))}
+                                    >
+                                        <FaTrash/>
+                                    </button>
+                               </div>
+                               <div className="flex justify-between items-baseline gap-2">
+                                    <p
+                                        className="text-sm text-gray-400"
+                                    >{entry.order} | {entry.type}
+                                    </p>
 
                                     <p className="font-mono ">Due: {entry.dueDate}</p>
                                </div>
