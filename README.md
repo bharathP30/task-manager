@@ -1,6 +1,7 @@
 # Task Manager
 A simple, responsive task management app that lets you add tasks with description, priority, category and due date, and this app will also lets you toggle tasks by their completion status, it also lets you search tasks in real time. Built with React hooks and Tailwind CSS.
 
+## Live : https://task-manager-steel-mu.vercel.app/
 
 ## Features
 
