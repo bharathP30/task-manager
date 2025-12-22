@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import { Analytics } from '@vercel/analytics/react'; 
 
 export default function App() {
     const [list, setList] = useState([]);
@@ -251,19 +252,13 @@ return (
 
                                     <p className="font-mono text-sm">Due: {entry.dueDate}</p>
                                </div>
-                                
                             </li>
                          ))
                          }
                 </ul>
-                
             )
-
-
             }
-
         </div>
-
     </div>
 )
 }
