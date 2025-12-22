@@ -1,18 +1,66 @@
-# React + Vite
+# Task Manager
+A simple, responsive task management app that lets you add tasks with description, priority, category and due date, and this app will also lets you toggle tasks by their completion status, it also lets you search tasks in real time. Built with React hooks and Tailwind CSS.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ Add tasks with priority levels (High/Medium/Low)
+📁 Organize by categories (Personal/School/Work/Shopping/Others)
+📅 Set due dates for tasks
+🔍 Search tasks by content
+🎯 Filter by category, priority, and completion status
+✔️ Mark tasks as complete/incomplete
+🗑️ Delete tasks
+📊 View task statistics (Total/Active/Completed)
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+**React** (with useState and icons)
+**Tailwind CSS**
+**JavaScript**
 
-Note: This will impact Vite dev & build performances.
+## How to use
 
-## Expanding the ESLint configuration
+### Adding a Task
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Type your task in the "Enter Task..." input field
+Choose a category from the dropdown (Personal, School, Work, Shopping, Others)
+Select a priority level (High, Medium, Low)
+Pick a due date using the date picker
+Click the "Add Task" button (it'll be disabled if the task field is empty)
+
+### Managing Tasks
+
+Mark as Complete: Click on the task text to toggle between done/pending
+Delete a Task: Click the trash icon (🗑️) on the right side of any task
+View Details: Each task shows its priority level, category, and due date below the task name
+
+### Filtering Your Tasks
+
+By Status: Use the dropdown at the top to show All/Done/Pending tasks
+By Category: Click category buttons (All, Personal, School, Work, Shopping, Others) to filter
+By Priority: Click priority buttons (All, High, Medium, Low) to filter
+Search: Type in the search bar to find tasks by name
+
+### Pro tip: Filters work together! You can search for term "meeting" while filtering by "Work" category and "High" priority to narrow down results.
+Understanding the Stats
+The dashboard shows three numbers:
+
+Total: All tasks you've created
+Active: Tasks that aren't completed yet
+Completed: Tasks you've marked as done
+
+### Installation
+```
+# Clone the repository
+git clone https://github.com/bharathP30/movie-search-app.git
+
+# Navigate into the project folder
+cd movie-search-app
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
