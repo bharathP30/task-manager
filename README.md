@@ -4,51 +4,51 @@ A simple, responsive task management app that lets you add tasks with descriptio
 
 ## Features
 
-✅ Add tasks with priority levels (High/Medium/Low)
-📁 Organize by categories (Personal/School/Work/Shopping/Others)
-📅 Set due dates for tasks
-🔍 Search tasks by content
-🎯 Filter by category, priority, and completion status
-✔️ Mark tasks as complete/incomplete
-🗑️ Delete tasks
-📊 View task statistics (Total/Active/Completed)
+- ✅ Add tasks with priority levels (High/Medium/Low)
+- 📁 Organize by categories (Personal/School/Work/Shopping/Others)
+- 📅 Set due dates for tasks
+- 🔍 Search tasks by content
+- 🎯 Filter by category, priority, and completion status
+- ✔️ Mark tasks as complete/incomplete
+- 🗑️ Delete tasks
+- 📊 View task statistics (Total/Active/Completed)
 
 ## Tech Stack
 
-**React** (with useState and icons)
-**Tailwind CSS**
-**JavaScript**
+- **React** (with useState and icons)
+- **Tailwind CSS**
+- **JavaScript**
 
 ## How to use
 
 ### Adding a Task
 
-Type your task in the "Enter Task..." input field
-Choose a category from the dropdown (Personal, School, Work, Shopping, Others)
-Select a priority level (High, Medium, Low)
-Pick a due date using the date picker
-Click the "Add Task" button (it'll be disabled if the task field is empty)
+- Type your task in the "Enter Task..." input field
+- Choose a category from the dropdown (Personal, School, Work, Shopping, Others)
+- Select a priority level (High, Medium, Low)
+- Pick a due date using the date picker
+- Click the "Add Task" button (it'll be disabled if the task field is empty)
 
 ### Managing Tasks
 
-Mark as Complete: Click on the task text to toggle between done/pending
-Delete a Task: Click the trash icon (🗑️) on the right side of any task
-View Details: Each task shows its priority level, category, and due date below the task name
+- Mark as Complete: Click on the task text to toggle between done/pending
+- Delete a Task: Click the trash icon (🗑️) on the right side of any task
+- View Details: Each task shows its priority level, category, and due date below the task name
 
 ### Filtering Your Tasks
 
-By Status: Use the dropdown at the top to show All/Done/Pending tasks
-By Category: Click category buttons (All, Personal, School, Work, Shopping, Others) to filter
-By Priority: Click priority buttons (All, High, Medium, Low) to filter
-Search: Type in the search bar to find tasks by name
+- By Status: Use the dropdown at the top to show All/Done/Pending tasks
+- By Category: Click category buttons (All, Personal, School, Work, Shopping, Others) to filter
+- By Priority: Click priority buttons (All, High, Medium, Low) to filter
+- Search: Type in the search bar to find tasks by name
 
 ### Pro tip: Filters work together! You can search for term "meeting" while filtering by "Work" category and "High" priority to narrow down results.
-Understanding the Stats
-The dashboard shows three numbers:
+- Understanding the Stats
+- The dashboard shows three numbers:
 
-Total: All tasks you've created
-Active: Tasks that aren't completed yet
-Completed: Tasks you've marked as done
+- Total: All tasks you've created
+- Active: Tasks that aren't completed yet
+- Completed: Tasks you've marked as done
 
 ### Installation
 ```
@@ -64,3 +64,5 @@ npm install
 # Start the development server
 npm run dev
 ```
+### Limitations
+- **Data do not persist after refresh**
