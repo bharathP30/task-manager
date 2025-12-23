@@ -54,7 +54,8 @@ export default function App() {
     
 
 return (
-    <div className="min-h-screen w-full p-4 bg-gradient-to-b from-gray-900 via-gray-600 to-gray-900">
+    <>
+        <div className="min-h-screen w-full p-4 bg-gradient-to-b from-gray-900 via-gray-600 to-gray-900">
     
         <header className="">
             <h1 className="text-3xl text-gray-400 font-sans font-bold text-center my-6
@@ -103,7 +104,7 @@ return (
             <div className='flex justify-between items-end md:justify-center md:gap-4'>
 
                     <select  
-                    className='rounded-md text-center w-fit py-1 
+                    className='rounded-md text-center w-fit p-1 
                                 md:w-1/4 bg-gray-600 text-white 
                                 font-sans outline-none' 
                     onChange={(e) => setCategory(e.target.value)} 
@@ -120,7 +121,7 @@ return (
                     </select>
 
                     <select 
-                    className='rounded-md outline-none text-center w-1/5 py-1
+                    className='rounded-md outline-none text-center w-1/5 p-1
                          bg-gray-600 text-white font-sans
                       ' 
                     onChange={(e) => setPriority(e.target.value)} 
@@ -136,11 +137,11 @@ return (
 
                     <label htmlFor="deadDate">
                     <input required
-                    className='rounded-lg py-1 text-center outline-none font-sans w-fit
+                    className='rounded-lg p-1 text-center outline-none font-sans w-32 md:w-40
                     bg-gray-600 text-white md:max-w-40' 
                     onChange={(e) => setDate(e.target.value)} 
                     type="date" 
-                    id="deadDate" 
+                    id="deadDate"
                     value={date}
                     />
                     </label>
@@ -260,5 +261,7 @@ return (
             }
         </div>
     </div>
+    <Analytics/>
+    </>
 )
 }
