@@ -6,7 +6,7 @@ export default function Filterbar ({ categoryFilter, onCategoryChange, priorityF
 
 
     return (
-         <div className="md:mb-8">
+         <div className="mb-4 md:mb-8">
                  <div className="space-x-1 space-y-1 flex justify-center items-center flex-wrap mb-2  md:space-x-2 md:space-y-2">
                    {categories.map(cat => (
                     <Filterbutton

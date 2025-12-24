@@ -99,7 +99,7 @@ return (
             /> 
         
         {list.length === 0 ? (
-          <p className="text-gray-500 m-8">No tasks yet. Add one above! 👆</p>
+          <p className="text-gray-500 m-8">No tasks yet.</p>
         ) : (
           <Tasklist
             tasks={filteredList}
