@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Analytics } from '@vercel/analytics/react'; 
 
@@ -12,6 +12,23 @@ export default function App() {
     const [priorityfilter, setPriorityfilter] = useState("All");
     const [searchterm, setSearchterm] = useState("");
     const [statusFilter, setStatusfilter] = useState("All");
+    const [isloaded, setIsloaded] = useState(false);
+
+    useEffect(()=>{ 
+        if (isloaded) {
+            localStorage.setItem('tasks', JSON.stringify(list));
+            console.log("saved");
+        }
+    }, [list, isloaded]);
+
+    useEffect(()=>{
+        const savedTasks = localStorage.getItem('tasks');
+        if(savedTasks){
+            setList(JSON.parse(savedTasks));
+            console.log("loaded");
+        }
+        setIsloaded(true);
+    }, []);
 
     const addTask = () => {
                 if (task.trim().length === 0) {
