@@ -11,7 +11,7 @@ export default function TaskItem({ task, onToggle, onDelete }) {
           onClick={() => onToggle(task.id)}
           className={task.completed ? isDone : notDone}
         >
-          {task.completed && "✓ "}{task.content}
+         {task.content}
         </p>
         <button 
           className="text-red-500 text-lg px-2 rounded-md hover:scale-110 transition-all duration-300"
@@ -22,9 +22,7 @@ export default function TaskItem({ task, onToggle, onDelete }) {
       </div>
       <div className="flex justify-between items-baseline gap-2">
         <p className="text-sm text-gray-400">
-          {task.order === "High"}
-          {task.order === "Medium"}
-          {task.order === "Low"}
+         
           {task.order} | {task.type}
         </p>
         {task.dueDate && (
