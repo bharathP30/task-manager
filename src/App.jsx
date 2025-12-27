@@ -6,29 +6,37 @@ import Searchbar from "./components/Searchbar";
 import Filterbar from "./components/Filterbar";
 import Tasklist from "./components/Tasklist";
 
+ function useLocalStorage(key , initialValue){
+        
+        const [isloaded, setIsloaded] = useState(false);
+        const [value, setValue] = useState(()=> {
+          const saved = localStorage.getItem(key);
+          if (saved) {
+              return JSON.parse(saved);
+          }
+              return initialValue;
+        });
+
+        useEffect(()=>{
+          setIsloaded(true);
+        },[]);
+
+        useEffect(()=>{
+          if (isloaded) {
+            localStorage.setItem(key, JSON.stringify(value));
+          }
+
+        }, [key, value, isloaded])
+        return [value, setValue];
+    } 
+
 export default function App() {
-    const [list, setList] = useState([]);
+    const [list, setList] = useLocalStorage("data", []);
     const [categoryfilter, setCategoryfilter] = useState("All");
     const [priorityfilter, setPriorityfilter] = useState("All");
     const [searchterm, setSearchterm] = useState("");
     const [statusFilter, setStatusfilter] = useState("All");
-    const [isloaded, setIsloaded] = useState(false);
-
-    useEffect(()=>{ 
-        if (isloaded) {
-            localStorage.setItem('tasks', JSON.stringify(list));
-            console.log("saved");
-        }
-    }, [list, isloaded]);
-
-    useEffect(()=>{
-        const savedTasks = localStorage.getItem('tasks');
-        if(savedTasks){
-            setList(JSON.parse(savedTasks));
-            console.log("loaded");
-        }
-        setIsloaded(true);
-    }, []);
+    
 
     const createTask = (newtask) =>{
         setList([...list, newtask]);
