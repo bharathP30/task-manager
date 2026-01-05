@@ -7,25 +7,30 @@ import Filterbar from "./components/Filterbar";
 import Tasklist from "./components/Tasklist";
 
  function useLocalStorage(key , initialValue){
-        
+
         const [isloaded, setIsloaded] = useState(false);
         const [value, setValue] = useState(()=> {
-          const saved = localStorage.getItem(key);
-          if (saved) {
-              return JSON.parse(saved);
-          }
-              return initialValue;
+         try {
+          const storedValue = localStorage.getItem(key);
+          return storedValue ? JSON.parse(storedValue) : initialValue;
+         } catch (error) {
+           console.error("Error reading localStorage key “" + key + "”: ", error);
+           return initialValue;
+         }
         });
-
+      
         useEffect(()=>{
           setIsloaded(true);
         },[]);
 
         useEffect(()=>{
-          if (isloaded) {
-            localStorage.setItem(key, JSON.stringify(value));
-          }
-
+         if(isloaded){
+          try {
+           localStorage.setItem(key, JSON.stringify(value));
+          } catch (error) {
+           console.error("Error setting localStorage key “" + key + "”: ", error);
+          } 
+        }
         }, [key, value, isloaded])
         return [value, setValue];
     } 
@@ -117,7 +122,7 @@ return (
         )}
            
         </div>
-    </div>
+        </div>
     <Analytics/>
     </>
 )

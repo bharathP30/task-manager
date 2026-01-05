@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 export default function Taskform({addTask}){
         const [task, setTask] = useState("");
         const [priority, setPriority] = useState("Low");
@@ -72,7 +73,6 @@ export default function Taskform({addTask}){
          
                             </select>
         
-                            <label htmlFor="deadDate">
                             <input required
                             className='rounded-lg p-1 text-center outline-none font-sans w-32 md:w-40
                             bg-gray-600 text-white md:max-w-40' 
@@ -81,7 +81,7 @@ export default function Taskform({addTask}){
                             id="deadDate"
                             value={date}
                             />
-                            </label>
+
                     </div>
                     <button 
                         onClick={handleSubmit} 
