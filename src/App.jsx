@@ -5,35 +5,8 @@ import Taskform from "./components/Taskform";
 import Searchbar from "./components/Searchbar";
 import Filterbar from "./components/Filterbar";
 import Tasklist from "./components/Tasklist";
-
- function useLocalStorage(key , initialValue){
-
-        const [isloaded, setIsloaded] = useState(false);
-        const [value, setValue] = useState(()=> {
-         try {
-          const storedValue = localStorage.getItem(key);
-          return storedValue ? JSON.parse(storedValue) : initialValue;
-         } catch (error) {
-           console.error("Error reading localStorage key “" + key + "”: ", error);
-           return initialValue;
-         }
-        });
-      
-        useEffect(()=>{
-          setIsloaded(true);
-        },[]);
-
-        useEffect(()=>{
-         if(isloaded){
-          try {
-           localStorage.setItem(key, JSON.stringify(value));
-          } catch (error) {
-           console.error("Error setting localStorage key “" + key + "”: ", error);
-          } 
-        }
-        }, [key, value, isloaded])
-        return [value, setValue];
-    } 
+import useLocalStorage from "./components/useLocalStorage";
+ 
 
 export default function App() {
     const [list, setList] = useLocalStorage("data", []);
@@ -74,7 +47,7 @@ export default function App() {
 
 return (
     <>
-        <div className="min-h-screen w-full p-4 bg-gradient-to-b from-gray-900 via-gray-600 to-gray-900">
+        <div className="min-h-screen w-full p-4 bg-gradient-to-br from-gray-900 via-gray-600 to-gray-900">
     
         <header className="">
             <h1 className="text-3xl text-gray-400 font-sans font-bold text-center my-6
